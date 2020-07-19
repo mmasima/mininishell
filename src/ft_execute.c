@@ -3,6 +3,7 @@
 
 static int ft_builtin(char **command){
     if (ft_strequ(command[0], "echo")){
+     
         return(1);
     }
     else if(ft_strequ(command[0], "exit")){
@@ -26,7 +27,6 @@ static char **ft_split(char *command)
         }
         else if (IS_SPACE(command[x]))
             command[x] = '"';
-
         x++;
     }
     arg = ft_strsplit(command, '"');
@@ -34,11 +34,11 @@ static char **ft_split(char *command)
 }
 
 int execute_command(char **command)
-{
+{   
+    struct stat file;
     int ans = 0;
-
+    
     ans = ft_builtin(command);
-    printf("%d",ans);
     if (ans == 1){
         execute_builtin(command);
         return 0;
@@ -46,7 +46,11 @@ int execute_command(char **command)
     else if (ans == -1){
         return (-1);
     }
-
+    else if(lstat(command[0], file) != -1){
+        if(file.st_mode){
+            
+        }
+    }
     else
     {
         ft_putendl("command not found");
@@ -56,7 +60,6 @@ int execute_command(char **command)
 
 int ft_execute(char **command)
 {
-
     int exec;
     char **args;
     int x = 0;
@@ -75,4 +78,5 @@ int ft_execute(char **command)
         }
         return exec;
     }
+    return exec;
 }

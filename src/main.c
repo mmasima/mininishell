@@ -9,14 +9,13 @@ static char *GNL()
 
 int main(int argc, char **argv, char **env)
 {
-
     char *read;
     char **command;
     int ans;
 
     get_env(env);
     while (1)
-    {
+    { 
         ft_putstr("$>");
         read = GNL();
         command = ft_strsplit(read, ';');
