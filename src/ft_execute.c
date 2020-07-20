@@ -46,11 +46,8 @@ int execute_command(char **command)
     else if (ans == -1){
         return (-1);
     }
-    else if(lstat(command[0], file) != -1){
-        if(file.st_mode){
-            
-        }
-    }
+    // else if(lstat(command[0], file) != -1){
+    // }
     else
     {
         ft_putendl("command not found");
